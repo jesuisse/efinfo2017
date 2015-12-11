@@ -46,9 +46,37 @@ def zeichneTeilchen(teilchen):
     ipos = (int(pos[0]), int(pos[1]))
     pygame.draw.circle(screen, teilchen[1], ipos, 10)
 
+def abprallen ( teilchen ):
+    pos = teilchen [0]
+    v = teilchen [2]
+
+    if pos [0] < 0:
+        pos [0] = - pos [0]
+        v [0] = -v [0]
+    elif pos [0] > screenGeometry [0]:
+        pos [0] = 2* screenGeometry [0] - pos [0]
+        v [0] = - v [0]
+    if pos [1] < 0:
+        pos [1] = - pos [1]
+        v [1] = -v [1]
+    elif pos [1] > screenGeometry [1]:
+        pos [1] = 2* screenGeometry [1] - pos [1]
+        v [1] = - v [1]
+
+def macheHeisseZone (pos , farbe):
+
+    return [ [ int ( pos [0]) , int ( pos [1]) ] , 30 , farbe ]
+
+def zeichneHeisseZone ( zone ):
+    pos = zone [0]
+    radius = zone [1]
+    farbe = zone [2]
+    pygame . draw . circle ( screen , farbe , pos , radius )
+
 
 screenGeometry = (800,600)
-
+heisseZonen = []
+rot = (255,0,0)
 
 legion = []
 for i in range(20):
@@ -70,11 +98,16 @@ while not wantsToQuit:
     for event in pygame . event.get():
         if event . type == pygame.QUIT :
             wantsToQuit = True
+        elif event . type == pygame . MOUSEBUTTONDOWN :
+            heisseZonen . append ( macheHeisseZone ( event . pos ,rot ))
+
     screen . fill ((0 ,0 ,0))
     for teilchen in legion :
-        bewege(teilchen, 1)
+        bewege(teilchen, 0.5)
+        abprallen(teilchen)
         zeichneTeilchen (teilchen)
+         
     pygame . display . flip ()
-    pygame . quit ()
+pygame . quit ()
 
 
