@@ -8,15 +8,23 @@ def normalisiere(vektor):
     laenge = math.sqrt(vektor[0] ** 2 + vektor[1] ** 2)
     norm = [vektor [0] / laenge , vektor [1] / laenge]
     return norm
-def skaliere ( vektor , fabn ktor ):
+def skaliere ( vektor , faktor ):
     return [vektor [0] * faktor , vektor [1] * faktor]
+
+def macheHeisseZone ( pos , farbe ):
+    return [ [ int ( pos [0]) , int ( pos [1]) ] , 30 , farbe ]
+def zeichneHeisseZone ( zone ):
+    pos = zone [0]
+    radius = zone [1]
+    farbe = zone [2]
+    pygame . draw . circle ( screen , farbe , pos , radius )
 
 def bewege ( teilchen , dt ):
     s = teilchen [0]
     v = teilchen [2]
     s [0] = s [0] + v [0] * dt
     s [1] = s [1] + v [1] * dt
-    
+
 def abprallen ( teilchen ):
     pos = teilchen [0]
     v = teilchen [2]
@@ -74,4 +82,4 @@ while not wantsToQuit:
         bewege( teilchen, 1 )
         abprallen(teilchen)
         zeichneTeilchen(teilchen)
-        pygame . display . flip ()
+    pygame . display . flip ()
