@@ -11,7 +11,5 @@ def quadrat(x):
     return x * x
 
 if __name__ == '__main__':
-    print("Hallo")
-    print("Hey")
     print(hallo_welt("Homer Simpson"))
     print("Das Quadrat von 5 ist", quadrat(5))
