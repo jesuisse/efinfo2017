@@ -8,6 +8,8 @@ size = width, height = 800, 600
 speed = [1, 1]
 black = 0, 0, 0
 
+print "Aenderung"
+
 screen = pygame.display.set_mode(size)
 
 ball = pygame.image.load("resource/ball.gif")
