@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 import sys, pygame
-
+#test
 pygame.init()
 
 size = width, height = 800, 600
