@@ -1,7 +1,7 @@
+# -*- coding: cp1252 -*-
 
-
-#Erstellen einer Klasse für alle Räume, mit verschiedenen Attributen (diese sind im Moment teilweise noch nicht
-#wirklich wichtig, sollen aber Ausbaumöglichkeiten für das Programm darstellen)
+#Erstellen einer Klasse fuer alle Raeume, mit verschiedenen Attributen (diese sind im Moment teilweise noch nicht
+#wirklich wichtig, sollen aber Ausbaumoeglichkeiten fuer das Programm darstellen)
 class Raum:
         def _init_(self,name,boden,pflanzen,objekte,wege,string):
                 self.name = name
@@ -23,7 +23,7 @@ class Raum:
                 for direct in self.wege.keys():
                         print "In Richtung",direct,"liegt",self.wege[direct].name
 
-#mit der folgenden Funktion wird geprüft, ob beim Betreten eines bestimmten Raumes etwas bestimmtes passiert
+#mit der folgenden Funktion wird geprueft, ob beim Betreten eines bestimmten Raumes etwas bestimmtes passiert
 
 def checkEreignis(standort):
 
@@ -34,7 +34,7 @@ def checkEreignis(standort):
                                 return 0
 
 
-#Als nächstes die Gehen-Funktion, nochmals aufgeteil in zwei kleinere Funktionen
+#Als naechstes die Gehen-Funktion, nochmals aufgeteil in zwei kleinere Funktionen
 
 def goto(standort,ziel):
         if ziel in standort.wege.keys():
@@ -42,7 +42,7 @@ def goto(standort,ziel):
                 e = checkEreignis(standort)
                 if e == 0:
                         return 0
-                #wenn die funktion null zurückgibt, heisst das, dass das spiel beendet werden soll
+                #wenn die funktion null zurueckgibt, heisst das, dass das spiel beendet werden soll
                 return standort
         else:
                 print "\nIn diese Richtung fuehrt kein Weg!\n"
@@ -69,7 +69,7 @@ def neueVerbindung(ort1,richtung,ort2):
         ort1.wege[richtung] = ort2
 
 
-#funktion zum Prüfen des vom Spieler eingegebenen Befehls
+#funktion zum Pruefen des vom Spieler eingegebenen Befehls
 def checkBefehl(inp):
         if inp[-1] in ["nehmen"]:
                 return "nimm"
@@ -79,6 +79,8 @@ def checkBefehl(inp):
                 return "gehe"
         elif inp[-1] in ["ausrüsten"]:
                 return "ausrüsten"
+        else:
+                return "nicht erkannt"
 
 #funktion zum Ermitteln der Richtung (im Falle eines Gehe-Befehls)
 def checkRichtung(inp):
@@ -97,8 +99,8 @@ def checkRichtung(inp):
                 if richtung in ["Unten","unten","runter","hinunter"]:
                         return "runter"
 
-#Die Klasse Charakter; die Objekte dieser Klasse sind die spieler (man könnte noch die möglichkeit hinzufügen, den eigenen charakter in
-#einer Datei zu speichern, um ihn später wieder abzurufen)
+#Die Klasse Charakter; die Objekte dieser Klasse sind die spieler (man koennte noch die moeglichkeit hinzufuegen, den eigenen charakter in
+#einer Datei zu speichern, um ihn spaeter wieder abzurufen)
 class Charakter:
         def _init_(self):
                 name = raw_input("Gib deinen Namen ein: ")
@@ -125,7 +127,7 @@ class Charakter:
                 print "\n"
 
 
-#Klasse Objekte: gegenstände, die der spieler finden, aufnehmen oder mit denen er interagieren kann
+#Klasse Objekte: gegenstaende, die der spieler finden, aufnehmen oder mit denen er interagieren kann
 #-> weitere Attribute folgen noch (z.B. der Wert, das Material, spezielle Eigenschaften, usw.)
 class Objekt:
         def _init_(self,name,string):
@@ -164,37 +166,37 @@ def objektAusruesten(objekt):
 
 def shell(start):
         print "Neuen Charakter erstellen..."
-        global spieler
         spieler = Charakter()
         spieler._init_()
         spieler.standort = start
-        #-> wie oben schon gesagt könnte man später noch die Möglichkeit einbauen, verschiedene Spielerprofile zu erstellen
+        #-> wie oben schon gesagt koennte man spaeter noch die Moeglichkeit einbauen, verschiedene Spielerprofile zu erstellen
         print "Ihr Charakter:"
         spieler.show()
         standort = start
         print "Dein Standort:"
         standort.display()
-
-        while True:
-                #input des Spielers
-                inp = raw_input(">>")
-                if inp == "exit":
-                        return
-                splitted = inp.split(" ")
-                befehl = checkBefehl(splitted)
-
-                #Ausführen des Befehls
-                if befehl == "gehe":
-                        richtung = checkRichtung(splitted)
-                        standort = gehe(standort,richtung)
-                        if standort == 0:
+        if __name__ == "__main__":
+                while True:
+                        #input des Spielers
+                        inp = raw_input(">>")
+                        if inp == "exit":
                                 return
-                if befehl == "nimm":
-                        objektNehmen(splitted[-1])
-                        spieler.show()
-                if befehl == "ausruesten":
-                        objektAusruesten(splitted[0])
-                        spieler.show()
+                        splitted = inp.split(" ")
+                        befehl = checkBefehl(splitted)
+                        if befehl in ["nicht erkannt"]:
+                                print "Befehl nicht erkannt"
+                        #Ausfuehren des Befehls
+                        if befehl == "gehe":
+                                richtung = checkRichtung(splitted)
+                                standort = gehe(standort,richtung)
+                                if standort == 0:
+                                        return
+                        if befehl == "nimm":
+                                objektNehmen(splitted[-1])
+                                spieler.show()
+                        if befehl == "ausruesten":
+                                objektAusruesten(splitted[0])
+                                spieler.show()
 
 
 
@@ -206,7 +208,7 @@ def shell(start):
 
 
 
-#erstellen von Räumen und Verbindungen
+#erstellen von Raeumen und Verbindungen
 stadt = Raum()
 stadt._init_("Stadt","stein",[],[],{},"Eine kleine Stadt.")
 
@@ -237,8 +239,10 @@ schluessel = Objekt()
 schluessel._init_("Schluessel","Ein verrosteter Schluessel")
 objektPlatzieren(schluessel,stadt)
 
+global spieler
 
 
+if __name__ == "__main__":
 
-shell(strasse)
+        shell(strasse)
 
