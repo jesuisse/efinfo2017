@@ -11,7 +11,7 @@ class ProgrammTest(unittest.TestCase):
     def testGoto_falscheRichtung(self):
         self.assertEqual(goto(strasse,"o"),strasse)
 
-    def testEreignis(self):
+    def testEreignis(self): 
         spieler.gewicht = 100
         self.assertEqual(checkEreignis(bruecke),0)
 
