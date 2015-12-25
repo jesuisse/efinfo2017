@@ -41,3 +41,5 @@ class ProgrammTest(unittest.TestCase):
     def testRichtungFalsch(self):
         self.assertNotEqual(checkRichtung("Gehe nach Nord"),"n")
 
+if __name__ == "__main__":
+    unittest.main()
