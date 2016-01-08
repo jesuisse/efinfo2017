@@ -75,9 +75,9 @@ def checkBefehl(inp):
                 return "nimm"
         if inp[0] in ["nimm","Nimm"]:
                 return "nimm"
-        elif inp[0] in ["gehe","Gehe"]:
+        if inp[0] in ["gehe","Gehe"]:
                 return "gehe"
-        elif inp[-1] in ["ausrüsten"]:
+        if inp[-1] in ["ausrüsten"]:
                 return "ausrüsten"
         else:
                 return "nicht erkannt"
@@ -166,7 +166,6 @@ def objektAusruesten(objekt):
 
 def shell(start):
         print "Neuen Charakter erstellen..."
-        spieler = Charakter()
         spieler._init_()
         spieler.standort = start
         #-> wie oben schon gesagt koennte man spaeter noch die Moeglichkeit einbauen, verschiedene Spielerprofile zu erstellen
@@ -240,7 +239,8 @@ schluessel._init_("Schluessel","Ein verrosteter Schluessel")
 objektPlatzieren(schluessel,stadt)
 
 global spieler
-
+spieler = Charakter()
+print 1
 
 if __name__ == "__main__":
 

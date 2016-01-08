@@ -3,6 +3,8 @@ __author__ = 'David'
 import unittest
 from textabenteuer import *
 
+
+
 class ProgrammTest(unittest.TestCase):
 
     def testGoto(self):
@@ -30,7 +32,7 @@ class ProgrammTest(unittest.TestCase):
 
 
     def testBefehl(self):
-        self.assertEqual(checkBefehl("nehmen"),"nimm")
+        self.assertEqual(checkBefehl(["Nimm","Schwert"]),"nimm")
 
     def testKeinBefehl(self):
         self.assertEqual(checkBefehl("Hallo"),"nicht erkannt")
