@@ -240,7 +240,6 @@ objektPlatzieren(schluessel,stadt)
 
 global spieler
 spieler = Charakter()
-print 1
 
 if __name__ == "__main__":
 
