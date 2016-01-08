@@ -5,8 +5,7 @@ from chainreaction5 import *
 
 
 class Chainreaction_1(unittest.TestCase):
-    #def test_macheTeilchen(self):
-    #self.assertIsNotNone(macheTeilchen(), [pos, farbe, v])
+
 
     def test_normalisiere(self):
         vektor = [4, 5]
@@ -18,9 +17,11 @@ class Chainreaction_1(unittest.TestCase):
         t = macheTeilchen()
         self.assertEqual(type(t), list)
         self.assertEqual(len(t), 3)
+        #len fragt nach wie viele Elemente in liste sind
 
     def testmacheTeilchen2(self):
-        self.assertIsNotNone(macheTeilchen(), Teilchen)
+        t = macheTeilchen()
+        self.assertIsNotNone(t)
 
     def testmacheTeilchen3(self):
         t = macheTeilchen()
