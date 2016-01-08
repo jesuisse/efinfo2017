@@ -1,7 +1,7 @@
 EF Informatik 2015-2017
 =======================
 
-Zur Terminologie
+Zur Terminologie:
 ----------------
 
 Falls du dieses Dokument liest und die Terminologie (Repo, Versionskontrolle,
