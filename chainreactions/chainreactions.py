@@ -19,7 +19,7 @@ def zeichneHeisseZone ( zone ):
     farbe = zone [2]
     pygame . draw . circle ( screen , farbe , pos , radius )
 
-def bewege ( teilchen , dt ):
+def bewege ( teilchen , dt   ):
     s = teilchen [0]
     v = teilchen [2]
     s [0] = s [0] + v [0] * dt
