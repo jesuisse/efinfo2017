@@ -4,16 +4,20 @@ import unittest
 class ProgrammTest(unittest.TestCase):
 
     def test_macheTeilchen(self):
-        self.assertEqual(macheTeilchen(),[])
+        self.assertEqual(type(macheTeilchen()),list)
 
     def test_normalisiere(self):
+        vektor = [4, 5]
+        d = math.sqrt(vektor[0] ** 2 + vektor[1] ** 2)
+        norm = [ vektor[0] / d, vektor[1] / d ]
         self.assertEqual(normalisiere(vektor),norm)
 
     def test_bewege(self):
-        self.assertEqual(bewege(teilchen,dt),pos[0])
-
-    def test_bewege(self):
-        self.assertEqual(bewege(teilchen,dt),pos[1])
+        pos = [random.randint(0, screenGeometry[0]), random.randint(0, screenGeometry[1])]
+        farbe = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
+        v = [ random.randint(-60,60), random.randint(-60,60)]
+        teilchen = [pos, farbe, v]
+        self.assertEqual(bewege(teilchen, 5),pos[0])
 
     def test_zeichneTeilchen(self):
         self.assertEqual(zeichneTeilchen(teilchen),pygame.draw.circle(screen, teilchen[1], pos, 10))
