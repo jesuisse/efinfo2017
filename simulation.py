@@ -11,14 +11,13 @@ Area = [10,10]
 
 maxfood = Area[0]*Area[1]
 
-food = 70
+food = 50
 
 growth = 0.01
 
 class Herbivore():
     def _init_(self):
         self.alive = True
-        self.ID = 1
         self.fitness = 0
         self.parent = None
         self.health = 5
@@ -41,6 +40,8 @@ class Herbivore():
 
         if self.health == 0:
             self.alive = False
+            if self.parent != None:
+                self.parent.fitness -= 1
         if self.alive == True:
             rand = random.randint(0,100)
             rand = float(rand)
@@ -53,12 +54,15 @@ class Herbivore():
             self.reproduce()
             #self.health -= 1
             self.fitness += 1
+            if self.fitness%4 == 0:
+                self.health -= 2
+
         self.age += 1
 
 
 
 t = 0
-end = 50
+end = 100
 foodcounter = 0
 creature = []
 population = []
