@@ -3,7 +3,7 @@
 #Erstellen einer Klasse fuer alle Raeume, mit verschiedenen Attributen (diese sind im Moment teilweise noch nicht
 #wirklich wichtig, sollen aber Ausbaumoeglichkeiten fuer das Programm darstellen)
 class Raum:
-        def _init_(self,name,boden,pflanzen,objekte,wege,string):
+        def __init__(self,name,boden,pflanzen,objekte,wege,string):
                 self.name = name
                 self.boden = boden
                 self.pflanzen = pflanzen
@@ -102,7 +102,7 @@ def checkRichtung(inp):
 #Die Klasse Charakter; die Objekte dieser Klasse sind die spieler (man koennte noch die moeglichkeit hinzufuegen, den eigenen charakter in
 #einer Datei zu speichern, um ihn spaeter wieder abzurufen)
 class Charakter:
-        def _init_(self):
+        def __init__(self):
                 name = raw_input("Gib deinen Namen ein: ")
                 groesse = raw_input("Wie gross bist du?")
                 gewicht = raw_input("Wie schwer bist du?")
@@ -130,7 +130,7 @@ class Charakter:
 #Klasse Objekte: gegenstaende, die der spieler finden, aufnehmen oder mit denen er interagieren kann
 #-> weitere Attribute folgen noch (z.B. der Wert, das Material, spezielle Eigenschaften, usw.)
 class Objekt:
-        def _init_(self,name,string):
+        def __init__(self,name,string):
                 self.name = name
                 self.string = string
 
@@ -208,18 +208,10 @@ def shell(start):
 
 
 #erstellen von Raeumen und Verbindungen
-stadt = Raum()
-stadt._init_("Stadt","stein",[],[],{},"Eine kleine Stadt.")
-
-strasse = Raum()
-strasse._init_("Strasse","stein",[],[],{},"Eine Strasse, die sich in weite Ferne erstreckt.")
-
-
-bruecke = Raum()
-bruecke._init_("Bruecke","stein",[],[],{},"Eine alte Steinbruecke.")
-
-teich = Raum()
-teich._init_("Teich","wasser",["Seerosen"],[],{},"Ein ruhiger Teich")
+stadt = Raum("Stadt","stein",[],[],{},"Eine kleine Stadt.")
+strasse = Raum("Strasse","stein",[],[],{},"Eine Strasse, die sich in weite Ferne erstreckt.")
+bruecke = Raum("Bruecke","stein",[],[],{},"Eine alte Steinbruecke.")
+teich = Raum("Teich","wasser",["Seerosen"],[],{},"Ein ruhiger Teich")
 
 neueVerbindung(stadt,"s",strasse)
 neueVerbindung(strasse,"s",bruecke)
@@ -230,12 +222,10 @@ neueVerbindung(teich,"w",stadt)
 
 
 #Erstellen und platzieren von Objekten
-schwert = Objekt()
-schwert._init_("Schwert","Ein Eisenschwert")
+schwert = Objekt("Schwert","Ein Eisenschwert")
 objektPlatzieren(schwert,bruecke)
 
-schluessel = Objekt()
-schluessel._init_("Schluessel","Ein verrosteter Schluessel")
+schluessel = Objekt("Schluessel","Ein verrosteter Schluessel")
 objektPlatzieren(schluessel,stadt)
 
 global spieler
