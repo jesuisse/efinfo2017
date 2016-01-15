@@ -1,5 +1,7 @@
-from chainreaction5 import*
 import unittest
+
+from unittest_demo.chainreaction.chainreaction5 import*
+
 
 class ProgrammTest(unittest.TestCase):
 
