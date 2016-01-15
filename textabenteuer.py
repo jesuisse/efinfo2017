@@ -165,8 +165,7 @@ def objektAusruesten(objekt):
 #die Shell
 
 def shell(start):
-        print "Neuen Charakter erstellen..."
-        spieler._init_()
+
         spieler.standort = start
         #-> wie oben schon gesagt koennte man spaeter noch die Moeglichkeit einbauen, verschiedene Spielerprofile zu erstellen
         print "Ihr Charakter:"
@@ -229,6 +228,7 @@ schluessel = Objekt("Schluessel","Ein verrosteter Schluessel")
 objektPlatzieren(schluessel,stadt)
 
 global spieler
+print "Einen neuen Charakter erstellen:"
 spieler = Charakter()
 
 if __name__ == "__main__":
