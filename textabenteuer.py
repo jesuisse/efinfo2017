@@ -72,38 +72,15 @@ def neueVerbindung(ort1,richtung,ort2):
 #funktion zum Pruefen des vom Spieler eingegebenen Befehls
 def checkBefehl(inp):
         if inp[-1] in ["nehmen"]:
-                return "nehmen"
+                return "nimm"
         if inp[0] in ["nimm","Nimm"]:
                 return "nimm"
         if inp[0] in ["gehe","Gehe"]:
                 return "gehe"
-        if inp[-1] in ["ausruesten"]:
-                return "ausruesten"
+        if inp[-1] in ["ausrüsten"]:
+                return "ausrüsten"
         else:
                 return "nicht erkannt"
-
-def befehlAusfuehren(befehl,input):
-        if befehl == "gehe":
-                richtung = checkRichtung(input)
-                standort = gehe(spieler.standort,richtung)
-                if standort == 0:
-                        return 0
-                else:
-                        return 1
-        if befehl == "nimm":
-                objektNehmen(input[-1])
-                spieler.show()
-                return 1
-
-        if befehl == "nehmen":
-                objektNehmen(input[0])
-                spieler.show()
-                return 1
-        if befehl == "ausruesten":
-                objektAusruesten(input[0])
-                spieler.show()
-                return 1
-
 
 #funktion zum Ermitteln der Richtung (im Falle eines Gehe-Befehls)
 def checkRichtung(inp):
@@ -207,9 +184,19 @@ def shell(start):
                         if befehl in ["nicht erkannt"]:
                                 print "Befehl nicht erkannt"
                         #Ausfuehren des Befehls
-                        bA = befehlAusfuehren(befehl,splitted)
-                        if bA == 0:
-                                return
+                        if befehl == "gehe":
+                                richtung = checkRichtung(splitted)
+                                standort = gehe(standort,richtung)
+                                if standort == 0:
+                                        return
+                        if befehl == "nimm":
+                                objektNehmen(splitted[-1])
+                                spieler.show()
+                        if befehl == "ausruesten":
+                                objektAusruesten(splitted[0])
+                                spieler.show()
+
+
 
 
 
