@@ -10,10 +10,7 @@ class ProgrammTest(unittest.TestCase):
         self.assertEqual(hallo_welt("Homer"), "Hallo Homer")
 
     def testHalloWeltOhneNamen(self):
-        self.assertNotEqual(hallo_welt(""), "Hallo ")
-        # oder besser
         self.assertEqual(hallo_welt(""), "Hallo")
-
 
     def testQuadrat(self):
         self.assertEqual(quadrat(5), 25)

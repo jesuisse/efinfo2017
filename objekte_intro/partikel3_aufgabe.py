@@ -61,3 +61,6 @@ class Partikel(object):
         """
         ipos = (int(self.x), int(self.y))
         pygame.draw.circle(canvas, self.color, ipos, 10)
+
+    def abprallen(self,screen_geometry):
+
