@@ -11,6 +11,7 @@ import random
 import math
 import pygame
 
+screenGeometry = (800,600)
 
 class Partikel(object):
     """
@@ -62,7 +63,22 @@ class Partikel(object):
         ipos = (int(self.x), int(self.y))
         pygame.draw.circle(canvas, self.color, ipos, 10)
 
-    def abprallen(self, spielfenster):
+    def abprallen(self, pos, v, Spielfenster):
+
+        Spielfenster = self.screenGeometry
+        pos = self.Partikel(x,y)
+        v = self.Partikel(vx, vy)
+
+        for i in range(2):
+            maximum = screenGeometry[i]
+            if pos[i] < 0:
+                pos[i] = -pos[i]
+                v[i] = -v[i]
+            elif pos[i] > maximum:
+                pos[i] = maximum - (pos[i]-maximum)
+                v[i] = -v[i]
+
+
         
 
 
