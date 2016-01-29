@@ -98,6 +98,15 @@ class Vektor2D(object):
         w, l = self.get_wl()
         return l
 
+    def setze_kartesisch(self,x,y):
+            self.x = x
+            self.y = y
+
+    def setze_polar(self,w,l):
+        winkel = w/180.0*math.pi
+        self.x, self.y = self._polar_zu_kartesisch(winkel,l)
+
+
 
 if __name__ == '__main__':
     v = Vektor2D(x=5, y=5)
