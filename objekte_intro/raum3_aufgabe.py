@@ -34,6 +34,8 @@ class Raum(object):
         """
         self.verbindungen.append((richtung, ziel))
 
+    def finde_raum_in_richtung(self):
+
     def anzeigen(self):
         """
         Zeigt einen Raum auf der Konsole an.

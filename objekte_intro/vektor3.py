@@ -47,6 +47,26 @@ class Vektor2D(object):
         w, l = self._kartesisch_zu_polar(self.x, self.y)
         self.x, self.y = self._polar_zu_kartesisch(w, 1)
 
+    def setze_kartesisch(self, x, y):
+        """
+        Setzt die kartesischen Komponenten des Vektors
+        :param x: x-Komponente
+        :param y: y-Komponente
+        """
+        self.x = x
+        self.y = y
+
+    def setze_polar(self, w, l):
+
+        "Winkel(360) in Bogenmass umwandeln "
+        """
+        Setzt den Vektor mit Polarkoordinaten
+        :param w: Der Winkel im Gradmass (von der 3-Uhr-Position im Gegenurzeigrsinn)
+        :param l: Die Länge des Vektors
+        """
+
+        self.x, self.y = self._polar_zu_kartesisch(w, l)
+
     def get_xy(self):
         """
         Liefert die kartesischen Koordinaten dieses Vektors
