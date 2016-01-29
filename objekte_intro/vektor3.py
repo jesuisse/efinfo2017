@@ -98,6 +98,25 @@ class Vektor2D(object):
         w, l = self.get_wl()
         return l
 
+    def setze_kartesisch(self, x, y):
+        """
+        Setzt die kartesischen Komponenten des Vektors
+        :param x: x-Komponente
+        :param y: y-Komponente
+        """
+        self.x = x
+        self.y = y
+
+
+    def setze_polar(self, w, l):
+        """
+        Setzt den Vektor mit Polarkoordinaten
+        :param w: Der Winkel im Gradmass (von der 3-Uhr-Position im Gegenurzeigrsinn)
+        :param l: Die Länge des Vektors
+        """
+        self.x, self.y = self._polar_zu_kartesisch(w*(math.pi/180), l)
+
+
 
 if __name__ == '__main__':
     v = Vektor2D(x=5, y=5)
