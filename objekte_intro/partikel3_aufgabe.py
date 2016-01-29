@@ -62,16 +62,19 @@ class Partikel(object):
         ipos = (int(self.x), int(self.y))
         pygame.draw.circle(canvas, self.color, ipos, 10)
 
-    def abprallen(self,scrren_geometry):
-        pos = self[0]
-        v = self[2]
-        for i in range(2):
-            maximum = screenGeometry[i]
-            if pos[i] < 0:
-                pos [i] = -pos[i]
-                v[i] = -v[i]
-            elif pos[i] > maximum:
-                pos[i] = maximum - (pos[i]-maximum)
-                v[i] = -[i]
+    def abprallen(self,screen_geometry):
+        max_x, max_y = screen_geometry[0], screen_geometry[1]
+        if self.x < 0:
+            self.x = -self.x
+            self.vx = -self.vx
+        if self.x > max_x:
+            self.x = max_x - (self.x - max_x)
+            self.vx = -self.vx
+        if self.y < 0:
+            self.y = -self.y
+            self.vy = -self.vy
+        if self.y > max_y:
+            self.y = max_y - (self.y - max_y)
+            self.vy = -self.vy
 
 
