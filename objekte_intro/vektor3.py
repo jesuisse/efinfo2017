@@ -98,7 +98,26 @@ class Vektor2D(object):
         w, l = self.get_wl()
         return l
 
+    def setze_kartesisch(self, x, y):
+        """
+        Setzt die kartesischen Komponenten des Vektors
+        :param x: x-Komponente
+        :param y: y-Komponente
+        """
+        self.x = x
+        self.y = y
 
+
+    def setze_polar(self, w, l):
+        """
+        Setzt den Vektor mit Polarkoordinaten
+        :param w: Der Winkel im Gradmass (von der 3-Uhr-Position im Gegenurzeigrsinn)
+        :param l: Die Länge des Vektors
+        """
+        self.x, self.y = self._polar_zu_kartesisch(w*(math.pi/180), l)
+        """(self, w, l) bekommt von Unittests z.B: (90, 5)-->übergibt dieses dann der Formel auf der rechten Seite
+        des = (siehe dort: w und l kommt vor)-->koordinaten werden in kartesisch umgerechnet-->Werte werden dem auf der
+        linken Seite des = uebergeben"""
 if __name__ == '__main__':
     v = Vektor2D(x=5, y=5)
     print(v.get_xy(), v.get_wl())
