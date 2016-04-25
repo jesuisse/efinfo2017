@@ -1,7 +1,13 @@
+# encoding: utf-8
+
 import math
 
 """
+Aufgabe: Ergänze die Klasse um die Methoden setze_kartesisch und setze_polar.
+Die benötigten Argumente kannst du dem Klassendiagramm entnehmen.
 
+Überprüfe, ob du alles richtig gemacht hast, indem du die Tests in vektor3_test.py
+laufen lässt.
 """
 
 
