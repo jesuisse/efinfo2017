@@ -114,9 +114,10 @@ class Carnivore():
                 if rand/100 < meat/50:
                     self.health = self.health + 1
                     randherbi = random.randint(1,meat-1)
-                    herbi[randherbi].alive = False
-                    herbi[randherbi].note = "Eaten"
-                    self.huntercount += 1
+                    if herbi[randherbi].note != "Eaten":
+                        herbi[randherbi].alive = False
+                        herbi[randherbi].note = "Eaten"
+                        self.huntercount += 1
         if self.health > 5 and self.age > 5 and self.childbirth == 0:
             self.reproduce()
             self.health -= 4
@@ -206,8 +207,6 @@ while t < end:
             print "Carni",i,"    Fitness:",carni[i].fitness,"    Health:",carni[i].health,"    Animals hunted:",carni[i].huntercount
         else:
             print "Carni",i,"    Fitness:",carni[i].fitness,"    Dead","          Animals hunted:",carni[i].huntercount
-
-
 
 
 
