@@ -6,17 +6,26 @@ NeueNote = """INSERT INTO Semester (Noten,Fach,Datum) VALUES (?,?,?)"""
 TabelleSemester = """SELECT * FROM Semester"""
 
 #Bestimmtes Fach anzeigen
-BestimmtesFach = """SELECT * FROM Semester WHERE Fach LIKE "fach" """
+FachAnzeigen = """SELECT * FROM Semester WHERE Fach LIKE ? """
 
 #Notenschnitt fuer bestimmtes Fach berechnen
-Notenschnitt = """SELECT Fach,AVG(Noten) AS "Durchschnitt" FROM Semester WHERE Fach LIKE "fach" """
+Notenschnitt = """SELECT Fach,AVG(Noten) AS "Durchschnitt" FROM Semester WHERE Fach LIKE ? """
+
+#Notenschnitt fuer bestimmtes Fach berechnen ohne Fachanzeige
+NotenschnittOhneFach = """SELECT AVG(Noten) AS "Durchschnitt" FROM Semester WHERE Fach LIKE ? """
 
 #Zielnote eingeben
-Zielnote = """INSERT INTO Fach_Zielnote (Fach,Zielnote) VALUES ("fach",5.5)"""
+Zielnote = """INSERT INTO Fach_Zielnote (Fach,Zielnote) VALUES (?,?)"""
 
-#Sollnote ausrechnen
-Sollnote = """SELECT Fach,Zielnote,(((COUNT(Noten)+1)*Zielnote)-(SELECT SUM(Noten))) AS "Sollnote" FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE "fach" """
+#Sollnote ausrechnen und alles anzeigen
+Sollnote = """SELECT Fach,Zielnote,(((COUNT(Noten)+1)*Zielnote)-(SELECT SUM(Noten))) AS "Sollnote" FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE ? """
+
+#Nur Sollnote anzeigen
+NurSollnote = """SELECT (((COUNT(Noten)+1)*Zielnote)-(SELECT SUM(Noten))) AS "Sollnote" FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE ? """
+
+#Nur Zielnote anzeigen
+NurZielnote = """SELECT Zielnote FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE ? """
 
 #Alle Faecher anzeigen
-AlleFaecher = """SELECT Fach,AVG(Noten) AS "Durchschnitt", Zielnote,(((SELECT COUNT(Noten)+1)*Zielnote)-(SELECT SUM(Noten))) AS "Sollnote" FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE "fach" """
+#AlleFaecher = """SELECT Fach,AVG(Noten) AS "Durchschnitt", Zielnote,(((SELECT COUNT(Noten)+1)*Zielnote)-(SELECT SUM(Noten))) AS "Sollnote" FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE "fach" """
 

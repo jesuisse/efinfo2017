@@ -6,35 +6,39 @@ from datetime import date
 #Datei mit den SQL Befehlen importieren
 #import notenSQL
 #Klassendefinitionen importieren
-from SQLiteCommands import *
+from Notenverwaltung import *
 
 #Verbindung zur Datenbank
-conn = sqlite3.connect('NotenDB.sqlite')
+conn = sqlite3.connect('BuchVerwaltung.sqlite')
 #Ein einfaches SQL ausfuehren
-cursor = conn.execute("SELECT titel FROM buch WHERE buchid = '1'")
-for row in cursor:
-    print row[0]
+#cursor = conn.execute("SELECT titel FROM buch WHERE buchid = '1'")
+#for row in cursor:
+#    print row[0]
 
 
 #Varaiablen vorbelegen
-VarNoten = dict()
-VarFaecher = dict()
+noten = dict()
+fachnoten = dict()
+faecher = dict()
 
 today = date.today()
 
 #diese Daten kommen aus der Datenbank - hier Beispiele hart-codiert
-VarNoten['Deutsch'] = FachNoten('Deutsch', [4.5, 4.75])
-VarNoten['Informatik'] = FachNoten('Informatik', [5, 5.5])
+noten['Semester'] = cmdTabelleSemesterAnzeigen()
 
-VarFaecher['Deutsch'] = FachDefn('Deutsch', 4, 5)
-VarFaecher['Informatik'] = FachDefn('Informatik', 4.5, 5)
+
+fachnoten['Deutsch'] = cmdFachAnzeigen("Deutsch")
+fachnoten['Franz'] = cmdFachAnzeigen('Franz')
+
+faecher["Deutsch"] = cmdSollnoteAusrechnen("Deutsch")
+faecher["Franz"] = cmdSollnoteAusrechnen("Franz")
 
 #Ausgabe in der Console testen
-text =  "Fach    \tSchnitt\tMin.\tNoten"
-for fach in VarNoten:
-    text += "\n" + fach + "\t" + str(VarNoten[fach].durchschnitt) + "\t" + \
-            str(VarFaecher[fach].mindestNote(len(VarNoten[fach].notenliste), VarNoten[fach].durchschnitt)) + "\t" + \
-            str(VarNoten[fach].notenliste)
+text =  "Fach    \tSchnitt\tZielnote\tSollnote"
+for fach in fachnoten:
+    text += "\n" + fach + "\t" + str(cmdNotenschnittOhneFach(fach)) + "\t" + \
+            str(cmdNurZielnote(fach)) + "\t" + \
+            str(cmdNurSollnote(fach))
 
 print text
 
@@ -77,12 +81,12 @@ Label(notenRahmen, text="Noten", font=titelFont2).grid(row=zeile, column=4, stic
 
 #Fuellen der Tabelle
 zeile+=2
-for fach in sorted(VarNoten):
+for fach in sorted(noten):
     Label(notenRahmen, text=fach).grid(row=zeile, column=1, sticky=W)
-    Label(notenRahmen, text=str(VarNoten[fach].durchschnitt)).grid(row=zeile, column=2)
-    Label(notenRahmen, text=str(VarFaecher[fach].mindestNote(len(VarNoten[fach].notenliste), VarNoten[fach].durchschnitt))+"/"+
-                            str(VarFaecher[fach].zielnote)).grid(row=zeile, column=3)
-    Label(notenRahmen, text=str(VarNoten[fach].notenliste)).grid(row=zeile, column=4, sticky=W)
+    Label(notenRahmen, text=str(noten[fach].durchschnitt)).grid(row=zeile, column=2)
+    Label(notenRahmen, text=str(faecher[fach].mindestNote(len(noten[fach].notenliste), noten[fach].durchschnitt))+"/"+
+                            str(faecher[fach].zielnote)).grid(row=zeile, column=3)
+    Label(notenRahmen, text=str(noten[fach].notenliste)).grid(row=zeile, column=4, sticky=W)
     zeile += 1
 
 #
@@ -99,7 +103,7 @@ zeile += 1
 
 #Knoepfe zum Auswaehlen eines Faches
 fach = StringVar()
-for f in sorted(VarFaecher):
+for f in sorted(faecher):
     knopf = Radiobutton(eingabeRahmen, text = f, variable = fach, value = f)
     knopf.grid(row=zeile, column=1, sticky=W)
     zeile += 1

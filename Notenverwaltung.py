@@ -13,5 +13,34 @@ def cmdTabelleSemesterAnzeigen():
     TabelleSemester = conn.execute(SQLiteCommands.TabelleSemester)
     return TabelleSemester
 
-cmdNeueNoteSpeichern(5.4, "Deutsch", "25.04.2016")
+def cmdFachAnzeigen(fach):
+    BestimmtesFachAnzeigen = conn.execute(SQLiteCommands.FachAnzeigen,[fach])
+    return BestimmtesFachAnzeigen
+
+def cmdNotenschnittFach(fach):
+    NotenschnittAnzeigen = conn.execute(SQLiteCommands.Notenschnitt,[fach])
+    return NotenschnittAnzeigen
+
+def cmdNotenschnittOhneFach(fach):
+    NotenschnittAnzeigen = conn.execute(SQLiteCommands.NotenschnittOhneFach,[fach])
+    return NotenschnittAnzeigen
+
+def cmdZielnoteEingeben(fach,zielNote):
+    ZielnoteEingeben = conn.execute(SQLiteCommands.Zielnote,[fach,zielNote])
+    return ZielnoteEingeben
+
+def cmdSollnoteAusrechnen(fach):
+    SollnoteAnzeigen = conn.execute(SQLiteCommands.Sollnote,[fach])
+    return SollnoteAnzeigen
+
+def cmdNurSollnote(fach):
+    NurSollnote = conn.execute(SQLiteCommands.NurSollnote,[fach])
+    return NurSollnote
+
+def cmdNurZielnote(fach):
+    NurZielnote = conn.execute(SQLiteCommands.NurZielnote,[fach])
+    return NurZielnote
+
+
+
 
