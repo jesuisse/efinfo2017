@@ -8,25 +8,25 @@ conn = sqlite3.connect("NotenDB.sqlite")
 
 
 def cmdNeueNoteSpeichern(note,fach,datum):
-    neueNote = conn.execute(SQLiteCommands.NeueNote,[note,fach,datum])
-    return neueNote
+    conn.execute(SQLiteCommands.NeueNote,[note,fach,datum])
+
+
 
 
 def cmdTabelleSemesterAnzeigen():
-    TabelleSemester = conn.execute(SQLiteCommands.TabelleSemester)
-    return TabelleSemester
+    conn.execute(SQLiteCommands.TabelleSemester)
+
 
 def cmdFachAnzeigen(fach):
-    BestimmtesFachAnzeigen = conn.execute(SQLiteCommands.FachAnzeigen,[fach])
-    return BestimmtesFachAnzeigen
+    conn.execute(SQLiteCommands.FachAnzeigen,[fach])
+
 
 def cmdNotenschnittFach(fach):
-    NotenschnittAnzeigen = conn.execute(SQLiteCommands.Notenschnitt,[fach])
-    return NotenschnittAnzeigen
+    conn.execute(SQLiteCommands.Notenschnitt,[fach])
+
 
 def cmdNotenschnittOhneFach(fach):
-    NotenschnittAnzeigen = conn.execute(SQLiteCommands.NotenschnittOhneFach,[fach])
-    return NotenschnittAnzeigen
+    conn.execute(SQLiteCommands.NotenschnittOhneFach,[fach])
 
 def cmdZielnoteEingeben(fach,zielNote):
     ZielnoteEingeben = conn.execute(SQLiteCommands.Zielnote,[fach,zielNote])
@@ -54,13 +54,8 @@ def runCursor(cmd):
 
 
 #neue note eingeben
-neueNote = eingabe.get()
 
 
-
-cursor = runCursor(cmdFachAnzeigen("Franz"))
-for row in cursor:
-    print row
 
 
 
@@ -75,9 +70,14 @@ fenster.title("Neues Fenster")
 fenster.geometry("500x600")
 
 #Knopf zum Speichern von allem
-def infoSave():
+def noteSave():
     tkMessageBox.showinfo( "Saved", "Saved")
-B = Tkinter.Button(fenster, text = "Save", command = infoSave)
+    note = neueNote.get()
+    note = float(note)
+    cursor = cmdNeueNoteSpeichern(note,"Deutsch","29.04.2016")
+    conn.commit()
+
+B = Tkinter.Button(fenster, text = "Save", command = noteSave)
 B.pack()
 
 
@@ -86,7 +86,17 @@ L1 = Label(fenster, text="Neue Note")
 L1.pack(side = LEFT)
 neueNote = Entry(fenster, bd = 5)
 
+L2 = Label(fenster, text="Fach")
+L2.pack(side = LEFT)
+fach = Entry(fenster, bd = 5)
+
+L3 = Label(fenster, text="Datum")
+L3.pack(side = LEFT)
+datum = Entry(fenster, bd = 5)
+
 neueNote.pack(side = RIGHT)
+fach.pack(side = RIGHT)
+datum.pack(side = RIGHT)
 
 fenster.mainloop()
 

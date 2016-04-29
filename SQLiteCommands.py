@@ -29,3 +29,4 @@ NurZielnote = """SELECT Zielnote FROM Semester NATURAL JOIN Fach_Zielnote WHERE 
 #Alle Faecher anzeigen
 #AlleFaecher = """SELECT Fach,AVG(Noten) AS "Durchschnitt", Zielnote,(((SELECT COUNT(Noten)+1)*Zielnote)-(SELECT SUM(Noten))) AS "Sollnote" FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE "fach" """
 
+
