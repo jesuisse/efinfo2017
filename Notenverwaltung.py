@@ -43,4 +43,20 @@ def cmdNurZielnote(fach):
 
 
 
+def runCursor(cmd):
+    cursor = cmd
+    return cursor
+
+
+
+
+#neue note eingeben
+neueNote = eingabe.get()
+
+
+
+cursor = runCursor(cmdFachAnzeigen("Franz"))
+for row in cursor:
+    print row
+
 
