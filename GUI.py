@@ -9,10 +9,10 @@ from datetime import date
 from notenObjekte import *
 
 #Verbindung zur Datenbank
-conn = sqlite3.connect('BuchVerwaltung.sqlite')
+#conn = sqlite3.connect('BuchVerwaltung.sqlite')
 #Ein einfaches SQL ausfuehren
-cursor = conn.execute("SELECT titel FROM buch WHERE buchid = '1'")
-for row in cursor:
+#cursor = conn.execute("SELECT titel FROM buch WHERE buchid = '1'")
+#for row in cursor:
     print row[0]
 
 
