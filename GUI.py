@@ -13,7 +13,7 @@ from notenObjekte import *
 #Ein einfaches SQL ausfuehren
 #cursor = conn.execute("SELECT titel FROM buch WHERE buchid = '1'")
 #for row in cursor:
-    print row[0]
+#    print row[0]
 
 
 #Varaiablen vorbelegen
@@ -129,6 +129,6 @@ noteNeuButton = Button(eingabeRahmen, text="Durchfuehren", font=buttonFont, comm
 fenster.mainloop()
 
 # Die Daten auf der Datenbank sichern
-conn.commit()
+#conn.commit()
 # Verbindung zur Datenbank schliessen.
-conn.close()
+#conn.close()
