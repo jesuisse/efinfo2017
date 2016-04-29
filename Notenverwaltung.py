@@ -1,5 +1,8 @@
 import sqlite3
 import SQLiteCommands
+import Tkinter
+import tkMessageBox
+from Tkinter import *
 
 conn = sqlite3.connect("NotenDB.sqlite")
 
@@ -59,4 +62,31 @@ cursor = runCursor(cmdFachAnzeigen("Franz"))
 for row in cursor:
     print row
 
+
+
+
+
+
+
+
+
+fenster = Tk()
+fenster.title("Neues Fenster")
+fenster.geometry("500x600")
+
+#Knopf zum Speichern von allem
+def infoSave():
+    tkMessageBox.showinfo( "Saved", "Saved")
+B = Tkinter.Button(fenster, text = "Save", command = infoSave)
+B.pack()
+
+
+#Neue Note eingeben
+L1 = Label(fenster, text="Neue Note")
+L1.pack(side = LEFT)
+neueNote = Entry(fenster, bd = 5)
+
+neueNote.pack(side = RIGHT)
+
+fenster.mainloop()
 
