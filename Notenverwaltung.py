@@ -70,14 +70,14 @@ fenster.title("Neues Fenster")
 fenster.geometry("500x600")
 
 #Knopf zum Speichern von allem
-def noteSave():
+def infoSave():
     tkMessageBox.showinfo( "Saved", "Saved")
     note = neueNote.get()
     note = float(note)
     cursor = cmdNeueNoteSpeichern(note,"Deutsch","29.04.2016")
     conn.commit()
 
-B = Tkinter.Button(fenster, text = "Save", command = noteSave)
+B = Tkinter.Button(fenster, text = "Save", command = infoSave)
 B.pack()
 
 
