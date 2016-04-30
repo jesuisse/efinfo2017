@@ -74,29 +74,36 @@ def infoSave():
     tkMessageBox.showinfo( "Saved", "Saved")
     note = neueNote.get()
     note = float(note)
-    cursor = cmdNeueNoteSpeichern(note,"Deutsch","29.04.2016")
+    datum = neuesDatum.get()
+    fach = neuesFach.get()
+    cursor = cmdNeueNoteSpeichern(note,fach,datum)
     conn.commit()
 
 B = Tkinter.Button(fenster, text = "Save", command = infoSave)
-B.pack()
+B.grid(column=1,row=3)
 
 
 #Neue Note eingeben
+
+
 L1 = Label(fenster, text="Neue Note")
-L1.pack(side = LEFT)
+L1.grid(row=0)
+
 neueNote = Entry(fenster, bd = 5)
 
 L2 = Label(fenster, text="Fach")
-L2.pack(side = LEFT)
-fach = Entry(fenster, bd = 5)
+L2.grid(row=1)
+
+neuesFach = Entry(fenster, bd = 5)
 
 L3 = Label(fenster, text="Datum")
-L3.pack(side = LEFT)
-datum = Entry(fenster, bd = 5)
+L3.grid(row=2)
 
-neueNote.pack(side = RIGHT)
-fach.pack(side = RIGHT)
-datum.pack(side = RIGHT)
+neuesDatum = Entry(fenster, bd = 5)
+
+neueNote.grid(column=1,row=0)
+neuesFach.grid(column=1,row=1)
+neuesDatum.grid(column=1,row=2)
 
 fenster.mainloop()
 
