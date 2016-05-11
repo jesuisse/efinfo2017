@@ -44,3 +44,9 @@ class Raum(object):
         for verbindung in self.verbindungen:
             print "In Richtung " + verbindung[0] + " liegt " + verbindung[1].name
 
+    def finde_raum_in_richtung(self,richtung):
+            for verbindung in self.verbindungen:
+                if verbindung[0] == richtung:
+                    return verbindung[1]
+
+
