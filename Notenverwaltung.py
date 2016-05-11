@@ -44,7 +44,12 @@ def cmdNurZielnote(fach):
     NurZielnote = conn.execute(SQLiteCommands.NurZielnote,[fach])
     return NurZielnote
 
+def cmdFachnamen():
+    Fachnamen = conn.execute(SQLiteCommands.Fachnamen)
+    return Fachnamen
 
+def cmdNurNotenschnitt(fach):
+    NurNotenschnitt = conn.execute(SQLiteCommands.NurNotenschnitt,[fach])
 
 def runCursor(cmd):
     cursor = cmd
@@ -53,7 +58,7 @@ def runCursor(cmd):
 
 
 
-#neue note eingeben
+
 
 
 
@@ -104,6 +109,69 @@ neuesDatum = Entry(fenster, bd = 5)
 neueNote.grid(column=1,row=0)
 neuesFach.grid(column=1,row=1)
 neuesDatum.grid(column=1,row=2)
+
+
+
+
+
+
+
+
+"""
+#Varaiablen vorbelegen
+faecher = list()
+zielnoten = dict()
+sollnoten = dict()
+durchschnitt = dict()
+
+faecherAktualisieren = cmdFachnamen()
+
+for fach in faecherAktualisieren:
+    fach = str(fach)
+    faecher.append(fach)
+for fach in faecher:
+    zielnoten[fach] = cmdNurSollnote(fach)
+    sollnoten[fach] = cmdNurSollnote(fach)
+    durchschnitt[fach] = cmdNurNotenschnitt(fach)
+
+#diese Daten kommen aus der Datenbank - hier Beispiele hart-codiert
+
+#
+# Notenuebersicht
+#
+zeile = 1
+titelRahmen = Frame(fenster)
+titelRahmen.grid()  #Anordung der Elemente im Rahmen
+Label(titelRahmen,text="Titel").grid(row=zeile, column=1)
+zeile+=1
+#Auflistung der Faecher
+#Spaltenueberschriften fuer die Tabelle
+notenRahmen = Frame(fenster, relief=RAISED, borderwidth=2)
+notenRahmen.grid()
+Label(notenRahmen, text="Fach").grid(row=zeile, column=1, sticky=W)
+Label(notenRahmen, text="Schnitt").grid(row=zeile, column=2)
+Label(notenRahmen, text="Zielnote").grid(row=zeile, column=3)
+Label(notenRahmen, text="Sollnote").grid(row=zeile, column=4, sticky=W)
+
+#neubelegung von faecher
+faecher = list()
+for fach in faecherAktualisieren:
+    faecher.append(fach)
+
+#Fuellen der Tabelle
+zeile+=2
+for fach in faecher:
+    Label(notenRahmen, text=fach).grid(row=zeile, column=1, sticky=W)
+    Label(notenRahmen, text=str(durchschnitt[fach]).grid(row=zeile, column=2))
+    Label(notenRahmen, text=str(zielnoten[fach]).grid(row=zeile, column=3))
+    Label(notenRahmen, text=str(sollnoten[fach]).grid(row=zeile, column=4, sticky=W))
+    zeile += 1
+
+
+
+
+
+"""
 
 fenster.mainloop()
 
