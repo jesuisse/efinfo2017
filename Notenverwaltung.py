@@ -7,10 +7,10 @@ from Tkinter import *
 conn = sqlite3.connect("NotenDB.sqlite")
 
 
+#Abfrage-Funktionen fuer die Datenbank
+
 def cmdNeueNoteSpeichern(note,fach,datum):
     conn.execute(SQLiteCommands.NeueNote,[note,fach,datum])
-
-
 
 
 def cmdTabelleSemesterAnzeigen():
@@ -56,25 +56,13 @@ def runCursor(cmd):
     return cursor
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+#GUI
 
 fenster = Tk()
 fenster.title("Neues Fenster")
 fenster.geometry("500x600")
 
-#Knopf zum Speichern von allem
+#GUI: Knopf zum Speichern von allem
 def infoSave():
     tkMessageBox.showinfo( "Saved", "Saved")
     note = neueNote.get()
@@ -88,7 +76,7 @@ B = Tkinter.Button(fenster, text = "Save", command = infoSave)
 B.grid(column=1,row=3)
 
 
-#Neue Note eingeben
+#GUI: Neue Note eingeben
 
 
 L1 = Label(fenster, text="Neue Note")
@@ -115,9 +103,6 @@ neuesDatum.grid(column=1,row=2)
 
 
 
-
-
-"""
 #Varaiablen vorbelegen
 faecher = list()
 zielnoten = dict()
@@ -127,14 +112,15 @@ durchschnitt = dict()
 faecherAktualisieren = cmdFachnamen()
 
 for fach in faecherAktualisieren:
-    fach = str(fach)
-    faecher.append(fach)
+    fache = str(fach)
+    faecher.append(fache)
 for fach in faecher:
     zielnoten[fach] = cmdNurSollnote(fach)
     sollnoten[fach] = cmdNurSollnote(fach)
     durchschnitt[fach] = cmdNurNotenschnitt(fach)
 
-#diese Daten kommen aus der Datenbank - hier Beispiele hart-codiert
+
+
 
 #
 # Notenuebersicht
@@ -153,10 +139,9 @@ Label(notenRahmen, text="Schnitt").grid(row=zeile, column=2)
 Label(notenRahmen, text="Zielnote").grid(row=zeile, column=3)
 Label(notenRahmen, text="Sollnote").grid(row=zeile, column=4, sticky=W)
 
-#neubelegung von faecher
-faecher = list()
-for fach in faecherAktualisieren:
-    faecher.append(fach)
+
+
+
 
 #Fuellen der Tabelle
 zeile+=2
@@ -171,7 +156,7 @@ for fach in faecher:
 
 
 
-"""
+
 
 fenster.mainloop()
 
