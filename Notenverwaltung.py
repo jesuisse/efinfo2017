@@ -112,8 +112,8 @@ durchschnitt = dict()
 faecherAktualisieren = cmdFachnamen()
 
 for fach in faecherAktualisieren:
-    fache = str(fach)
-    faecher.append(fache)
+    fach = str(fach)
+    faecher.append(fach)
 for fach in faecher:
     zielnoten[fach] = cmdNurSollnote(fach)
     sollnoten[fach] = cmdNurSollnote(fach)
@@ -147,9 +147,9 @@ Label(notenRahmen, text="Sollnote").grid(row=zeile, column=4, sticky=W)
 zeile+=2
 for fach in faecher:
     Label(notenRahmen, text=fach).grid(row=zeile, column=1, sticky=W)
-    Label(notenRahmen, text=str(durchschnitt[fach]).grid(row=zeile, column=2))
-    Label(notenRahmen, text=str(zielnoten[fach]).grid(row=zeile, column=3))
-    Label(notenRahmen, text=str(sollnoten[fach]).grid(row=zeile, column=4, sticky=W))
+    Label(notenRahmen, text=str(durchschnitt[fach])).grid(row=zeile, column=2)
+    Label(notenRahmen, text=str(zielnoten[fach])).grid(row=zeile, column=3)
+    Label(notenRahmen, text=str(sollnoten[fach])).grid(row=zeile, column=4, sticky=W)
     zeile += 1
 
 
