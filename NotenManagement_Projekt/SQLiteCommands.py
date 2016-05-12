@@ -27,6 +27,6 @@ NurSollnote = """SELECT (((COUNT(Noten)+1)*Zielnote)-(SELECT SUM(Noten))) AS "So
 NurZielnote = """SELECT Zielnote FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE ? """
 
 #Alle Faecher anzeigen
-AlleFaecher = """SELECT Fach,AVG(Noten) AS "Durchschnitt", Zielnote,(((SELECT COUNT(Noten)+1)*Zielnote)-(SELECT SUM(Noten))) AS "Sollnote" FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE "fach" """
+AlleFaecher = """SELECT Fach,Round(AVG(Noten), 2) AS "Durchschnitt", Zielnote,(Round(((SELECT COUNT(Noten)+1)*Zielnote)-(SELECT SUM(Noten)), 2)) AS "Sollnote" FROM Semester NATURAL JOIN Fach_Zielnote WHERE Fach LIKE "fach""""
 
 
